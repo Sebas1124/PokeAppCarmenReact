@@ -1,0 +1,252 @@
+/* --- Reseteo Básico y Variables Globales --- */
+:root {
+    --font-main: 'Poppins', sans-serif;
+    --color-dark: #1a1a1a;
+    --color-light: #f0f0f0;
+    --shadow-light: rgba(255, 255, 255, 0.1);
+    --shadow-dark: rgba(0, 0, 0, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    overflow-x: hidden;
+}
+
+/* --- Cabecera y Buscador --- */
+.main-header {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.logo {
+    width: 50px;
+    filter: drop-shadow(0 0 10px var(--shadow-light));
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.search-bar {
+    width: 90%;
+    max-width: 500px;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    border: 1px solid var(--shadow-light);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-light);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.search-bar:focus {
+    box-shadow: 0 0 15px var(--shadow-light);
+}
+
+/* --- Contenedor de las Cards (Mobile-First) --- */
+.pokedex-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* 1 columna por defecto */
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+/* --- Estilo de la Card de Pokémon --- */
+.pokemon-card {
+    background: transparent;
+    perspective: 1000px; /* Necesario para el efecto 3D flip */
+    min-height: 350px;
+    border-radius: 20px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* --- Animación de hover: la carta gira --- */
+.pokemon-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* --- Cara Frontal y Trasera --- */
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Para Safari */
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05); /* Efecto Glassmorphism */
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px 0 var(--shadow-dark);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    justify-content: flex-start;
+}
+
+/* --- Estilo del Contenido de la Card --- */
+.pokemon-id {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.pokemon-image-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pokemon-image {
+    max-width: 80%;
+    height: auto;
+    filter: drop-shadow(0 5px 15px var(--shadow-dark));
+    transition: transform 0.4s ease-in-out;
+}
+
+.pokemon-card:hover .pokemon-image {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.pokemon-name {
+    font-size: 1.8rem;
+    margin-top: 1rem;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+.pokemon-type {
+    margin-top: 0.5rem;
+}
+
+.pokemon-type span {
+    padding: 0.3rem 1rem;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* --- Estilos para la parte trasera (Estadísticas) --- */
+.stats-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-light);
+}
+
+.stats-list {
+    list-style: none;
+    width: 100%;
+}
+
+.stats-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+}
+
+.stat-bar {
+    width: 60%;
+    height: 8px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.stat-bar div {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+}
+
+
+/* --- Colores dinámicos por tipo de Pokémon (Ejemplos) --- */
+/* Estos degradados se aplicarían dinámicamente con JS */
+.fire-type .card-front, .fire-type .stat-bar div {
+    background: linear-gradient(135deg, #FF9966 0%, #FF5E62 100%);
+}
+
+.water-type .card-front, .water-type .stat-bar div {
+    background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+}
+
+.grass-type .card-front, .grass-type .stat-bar div {
+    background: linear-gradient(135deg, #A8E063 0%, #56AB2F 100%);
+}
+
+/* --- Diseño Responsive (Media Queries) --- */
+
+/* Pantallas pequeñas (Tablets) */
+@media (min-width: 576px) {
+    .pokedex-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    }
+}
+
+/* Pantallas medianas */
+@media (min-width: 768px) {
+    .pokedex-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    }
+    h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Pantallas grandes */
+@media (min-width: 992px) {
+    .pokedex-grid {
+        grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+    }
+}
+
+/* Pantallas extra grandes */
+@media (min-width: 1200px) {
+    .pokedex-grid {
+        grid-template-columns: repeat(5, 1fr); /* 5 columnas */
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+}
