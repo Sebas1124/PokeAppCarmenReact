@@ -7,7 +7,7 @@ export const DetallePage = () => {
   return (
     <div class="pokemon-detail-container">
 
-        <a href="index.html" class="back-button">← Volver</a>
+        <a href="index.html" class="back-button">← Volver!</a>
 
         <header class="pokemon-main-info fire-gradient-bg">
             <div class="header-content">
