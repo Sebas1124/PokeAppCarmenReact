@@ -152,7 +152,7 @@
 
   .pokemon-name {
     font-size: 1.8rem;
-    margin-top: 1rem;
+    margin-top: -20 px;
     text-transform: capitalize;
     font-weight: 600;
   }

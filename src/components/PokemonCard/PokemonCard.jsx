@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 export const PokemonCard = ({ img, name, pokemon }) => {
 
@@ -7,6 +8,7 @@ export const PokemonCard = ({ img, name, pokemon }) => {
 
   return (
     <div className={`pokemon-card fire-type`}>
+       <Link to={`/detalle/${pokemon.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
         <div className="card-inner">
             <div className="card-front">
                 <span className="pokemon-id">#001</span>
@@ -31,6 +33,7 @@ export const PokemonCard = ({ img, name, pokemon }) => {
                 </ul>
             </div>
         </div>
+         </Link>
     </div>
   )
 }
