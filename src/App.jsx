@@ -3,5 +3,5 @@ import { PokemonCard } from "./components/PokemonCard/PokemonCard"
 
 export const App = () => {
 
-
+  
 }

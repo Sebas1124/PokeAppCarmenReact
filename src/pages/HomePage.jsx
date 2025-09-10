@@ -2,7 +2,7 @@ import { PokemonCard } from "../components/PokemonCard/PokemonCard"
 
 
 export const HomePage = () => {
-   const pokemons = [
+  const pokemons = [
     {
       id: 1,
       name: "bulbasaur",
