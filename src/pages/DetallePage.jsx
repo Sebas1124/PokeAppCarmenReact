@@ -7,10 +7,12 @@ export const DetallePage = () => {
     const [pokemon, setPokemon]         = useState(null);
     const [mainType, setMainType]       = useState(null);
     const [speciesData, setSpeciesData] = useState(null);
-    
+
     const [evolutionData, setEvolutionData] = useState(null);
     const [textEntries, setTextEntries]     = useState("");
     const [weakness, setWeakness]           = useState([]);
+
+    const [haveError, setHaveError] = useState(false);
 
     const { id } = useParams();
 
@@ -47,6 +49,7 @@ export const DetallePage = () => {
 
         } catch (error) {
             console.error("Error buscando detalles del Pokémon:", error);            
+            setHaveError(true);
         }
         finally {
             setLoading(false);
@@ -66,6 +69,15 @@ export const DetallePage = () => {
             </div>
         )
     }
+
+    if (haveError) {
+        return (
+            <div className="error-container">
+                <p>Error cargando detalles del Pokémon. Por favor, inténtalo de nuevo más tarde.</p>
+            </div>
+        )
+    }
+    
 
   return (
     <div className="pokemon-detail-container">
