@@ -188,13 +188,48 @@
   .stat-fill { height: 100%; border-radius: 5px; transition: width 1.5s ease-out; }
 
   /* --- Loader --- */
-  .loader-container { display: flex; justify-content: center; align-items: center; height: 80vh; flex-direction: column; gap: 1rem; }
-  .loader { width: 50px; height: 50px; border: 5px solid var(--shadow-light); border-top-color: #6a11cb; border-radius: 50%; animation: spin 1s linear infinite; }
+  .loader-container { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 80vh; 
+    flex-direction: column; 
+    gap: 1rem; 
+  }
+  .loader { 
+    width: 50px; 
+    height: 50px; 
+    border: 5px solid var(--shadow-light); 
+    border-top-color: #6a11cb; 
+    border-radius: 50%; 
+    animation: spin 1s linear infinite; 
+  }
   @keyframes spin { 
-        to { 
-            transform: rotate(360deg); 
-        } 
+      to { 
+          transform: rotate(360deg);
+      } 
     }
+
+  .legendary-badge {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: rgb(243, 232, 170);
+    padding: 10px;
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+    text-shadow: 0 1px 3px var(--shadow-dark);
+    font-size: 1rem;
+    box-shadow: 0 4px 10px var(--shadow-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .legendary-badge span {
+    text-align: center;
+  }
 
   /* --- Colores Dinámicos por Tipo (Estructura mejorada) --- */
   .fire-type .card-front, .fire-type .stat-fill, .type-badge.fire { background: linear-gradient(135deg, #FF9966, #FF5E62); }

@@ -14,9 +14,9 @@ import { BrowserRouter } from 'react-router-dom'
 //envolver la app con BrowserRouter, dentro de browserRouter va la app, voy a colocar otra etiqueta que es approuter
 //definir las rutas en approuter
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
     <BrowserRouter>
       <AppRouter />
     </BrowserRouter>
-  </StrictMode>,
+  // </StrictMode>,
 )
