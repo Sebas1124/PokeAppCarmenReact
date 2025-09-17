@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export const DetallePage = () => {
 
@@ -15,6 +15,8 @@ export const DetallePage = () => {
     const [haveError, setHaveError] = useState(false);
 
     const { id } = useParams();
+
+    const navigate = useNavigate();
 
     const fetchPokemon = async (id) => {
         try {
@@ -58,7 +60,11 @@ export const DetallePage = () => {
 
     useEffect(() => {
         fetchPokemon(id);
-    }, [])
+    }, [id])
+
+    const handleNavigateEvolutionChain = (name) => {
+        navigate(`/detalle/${name}`);
+    }
     
 
     if (loading) {
@@ -161,6 +167,7 @@ export const DetallePage = () => {
                                         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evolutionData.species.url.split('/').slice(-2, -1)[0]}.png`}
                                         alt={evolutionData.species.name}
                                         className="evolution-image"
+                                        onClick={() => handleNavigateEvolutionChain(evolutionData.species.name)}
                                     />
                                     <span className="evolution-name">{evolutionData.species.name}</span>
                                 </div>
@@ -173,6 +180,7 @@ export const DetallePage = () => {
                                                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evolutionData.evolves_to[0].species.url.split('/').slice(-2, -1)[0]}.png`}
                                                     alt={evolutionData.evolves_to[0].species.name}
                                                     className="evolution-image"
+                                                    onClick={() => handleNavigateEvolutionChain(evolutionData.evolves_to[0].species.name)}
                                                 />
                                                 <span className="evolution-name">{evolutionData.evolves_to[0].species.name}</span>
                                             </div>
@@ -190,6 +198,7 @@ export const DetallePage = () => {
                                                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evolutionData.evolves_to[0].evolves_to[0].species.url.split('/').slice(-2, -1)[0]}.png`}
                                                     alt={evolutionData.evolves_to[0].evolves_to[0].species.name}
                                                     className="evolution-image"
+                                                    onClick={() => handleNavigateEvolutionChain(evolutionData.evolves_to[0].evolves_to[0].species.name)}
                                                 />
                                                 <span className="evolution-name">{evolutionData.evolves_to[0].evolves_to[0].species.name}</span>
                                             </div>
