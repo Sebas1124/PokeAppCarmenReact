@@ -15,19 +15,20 @@ export const HomePage = () => {
       const data      = await response.json();
 
       const pokeData = await Promise.all(
-        data.results.map( async (pokemon, index) => {
+        data.results.map(async (pokemon, index) => {
 
-        const fullData     = await fetch(pokemon.url);
-        const fullDataJson = await fullData.json();
+          const fullData     = await fetch(pokemon.url);
+          const fullDataJson = await fullData.json();
 
-        return {
-          id: index + 1,
-          name: pokemon.name,
-          img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png`,
-          types: fullDataJson.types,
-          abilities: fullDataJson.abilities,
+          return {
+            id: index + 1,
+            name: pokemon.name,
+            img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png`,
+            types: fullDataJson.types,
+            abilities: fullDataJson.abilities,
+          }
         }
-      }));
+      ));
 
       setPokemons(pokeData);
       
@@ -86,6 +87,7 @@ export const HomePage = () => {
               img={pokemon.img}
               name={pokemon.name}
               pokemon={pokemon}
+              mainType={pokemon.types[0].type.name}
             />
           ))
         }

@@ -1,9 +1,9 @@
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { Link } from "react-router-dom"
 
-export const PokemonCard = ({ img, name, pokemon }) => {
+export const PokemonCard = ({ img, name, pokemon, mainType }) => {
   return (
-    <div className={`pokemon-card fire-type`}>
+    <div className={`pokemon-card ${mainType}-type`}>
         <Link to={`/detalle/${pokemon.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
             <div className="card-inner">
                 <div className="card-front">
