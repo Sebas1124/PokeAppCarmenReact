@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react"
 import { PokemonCard } from "../components/PokemonCard/PokemonCard"
+import { useNavigate } from "react-router-dom";
 
 
 export const HomePage = () => {
 
   const [pokemons, setPokemons] = useState([]);
   const [loading, setLoading]   = useState(true);
+  const [inputValue, setInputValue] = useState("");
+
+  const navigate = useNavigate();
 
   const fetchPokemons = async () => {
 
@@ -49,6 +53,17 @@ export const HomePage = () => {
   /* SPA -> Single Page Application */
   /* NPM -> Node Package Manager */
 
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+  }
+
+  const introKeyPress = (event) => {
+    if (event.key === "Enter"){
+      const searchTerm = inputValue.toLowerCase().trim();
+      navigate(`/detalle/${searchTerm}`);
+    }
+  }
+
   if (loading){
     return (
       <div className="loader-container">
@@ -73,6 +88,9 @@ export const HomePage = () => {
           type="text"
           className="search-bar"
           placeholder="Buscar pokémon..."
+          onChange={handleChange}
+          value={inputValue}
+          onKeyDown={introKeyPress}
         />
 
       </header>

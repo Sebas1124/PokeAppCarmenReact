@@ -72,8 +72,16 @@ export const DetallePage = () => {
 
     if (haveError) {
         return (
-            <div className="error-container">
-                <p>Error cargando detalles del Pokémon. Por favor, inténtalo de nuevo más tarde.</p>
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100vh',
+                textAlign: 'center'
+            }}>
+                <h1>Error cargando detalles del Pokémon. Por favor, inténtalo de nuevo más tarde.</h1>
+                <Link to="/" style={{ marginTop: 20 }} className="back-button">← Volver al inicio</Link>
             </div>
         )
     }
